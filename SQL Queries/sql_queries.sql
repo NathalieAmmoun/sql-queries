@@ -1,7 +1,7 @@
 SELECT id, type, name, year, institute FROM `degrees`;
 
 SELECT F.facFirstName FROM `faculty` F, `degrees` D
-WHERE D.type = 'MS' and D.name = 'Computer Science';
+WHERE D.type = 'MS' AND D.name = 'Computer Science';
 
 DELETE FROM `faculty`;
 
