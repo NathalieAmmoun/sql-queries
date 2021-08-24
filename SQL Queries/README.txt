@@ -3,13 +3,14 @@ Nathalie Ammoun-SQL Queries- Design Errors and Solutions
 
 Design Errors:
 
-1- There's only one faculty table
+1- There's only one faculty table where all information is mixed and misleading
 
-2- There's no specific Primary Key 
+2- There's no specific Primary Key which makes allocating faculty members, degrees, or departments extremely difficult
 
-2- Information was limited regarding each faculty
+2- Information was limited regarding each faculty for example there's no phone, address, and which departments they're in
 
-3- three fields for the degrees are not enough 
+3- three fields for the degrees are not enough for example MS in Computer Science should be separated into two different fields (field named type (for BS,MS,Phd...,) and field for degree name : ex: Computer Science) 
+4 - Relationships between faculty, degrees and departments must be specified
 
 
 Solutions:
