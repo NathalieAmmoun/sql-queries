@@ -15,7 +15,8 @@ function resetMaze(){
     isStatus = false;
     for (var i =0; i< boundary.length; i++){
         boundary[i].style.backgroundColor = "#eeeeee";
-    }}
+    }
+    game.style.backgroundColor ="white";  }
 //Hover Over S to Start The GAME
 start.addEventListener("mouseover", startGame);
 function startGame(){
