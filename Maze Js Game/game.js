@@ -24,6 +24,7 @@ function startGame(){
     for (var i =0; i< boundary.length; i++){
         boundary[i].style.backgroundColor = "#eeeeee";
     }
+    game.style.backgroundColor ="white";
 }
 //CHEATER!!
 game.addEventListener("mouseleave", cheater);
