@@ -12,7 +12,7 @@ start.addEventListener("click", resetMaze);
 function resetMaze(){
     status.innerHTML = "Game Reset"
     score = 0;
-    isStatus = false;
+    isStatus = true;
     for (var i =0; i< boundary.length; i++){
         boundary[i].style.backgroundColor = "#eeeeee";
     }
