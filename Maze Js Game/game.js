@@ -6,7 +6,7 @@ var boundary = document.getElementsByClassName("boundary");
 var status = document.getElementById("status");
 var end = document.getElementById("end");
 var game = document.getElementById("game")
-
+status.innerHTML="Begin by moving your mouse over the \"S\ Or Reset Game by Clicking on \"S\"";
 //RESET MAZE
 start.addEventListener("click", resetMaze);
 function resetMaze(){
