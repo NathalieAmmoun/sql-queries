@@ -17,6 +17,8 @@ include("php/connection.php");
     <link rel="stylesheet" href="css/owl.carousel.min.css" type="text/css">
     <link rel="stylesheet" href="css/slicknav.min.css" type="text/css">
     <link rel="stylesheet" href="css/style.css" type="text/css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+
     <title>Login</title>
 
     <!-- Icons font CSS-->
@@ -80,7 +82,7 @@ include("php/connection.php");
         <div class="card card-4">
           <div class="card-body">
             <h2 class="title">Register As</h2>
-            <form method="POST" id="signupForm" action="php/checkType.php" method="POST" >
+            <form method="POST" id="signupForm" action="php/checkType.php">
                   <div class="input-group">
                     <label class="label"></label>
                     <div class="p-t-10 col-12">

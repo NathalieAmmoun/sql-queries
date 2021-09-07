@@ -24,6 +24,7 @@ include("php/connection.php");
     <link rel="stylesheet" href="css/owl.carousel.min.css" type="text/css">
     <link rel="stylesheet" href="css/slicknav.min.css" type="text/css">
     <link rel="stylesheet" href="css/style.css" type="text/css">
+    
 
     <!-- Title Page-->
     <title>Elite Shopper | Register</title>
@@ -94,7 +95,7 @@ include("php/connection.php");
         <div class="card card-4">
           <div class="card-body">
             <h2 class="title">Register</h2>
-            <form method="POST" id="signupForm" action="php/retailer-signup.php" method="POST" >
+            <form method="POST" id="signupForm" >
               <div class="row row-space">
                 <div class="col-6">
                   <div class="input-group">
@@ -123,8 +124,7 @@ include("php/connection.php");
                       name="email"
                     />
                   </div>
-                  <div class="alert alert-danger" role="alert" id="email-a">
-                        </div>
+                  <div class="alert alert-danger" role="alert" id="email-a" hidden="true"></div>
                 </div>
                 <div class="col-6">
                   <div class="input-group">
@@ -137,8 +137,7 @@ include("php/connection.php");
                       name="phone"
                     />
                   </div>
-                  <div class="alert alert-danger" role="alert" id="phone-a">
-                        </div>
+                  <div class="alert alert-danger" role="alert" id="phone-a" hidden="true"></div>
                 </div>
               </div>
               <div class="row row-space">
@@ -165,8 +164,7 @@ include("php/connection.php");
                       id="confirmPassword"
                     />
                   </div>
-                  <div class="alert alert-danger" role="alert" id="pass-a">
-                        </div>
+                  <div class="alert alert-danger" role="alert" id="pass-a" hidden="true"></div>
                 </div>
               </div>
               <div class="input-group">
@@ -182,12 +180,14 @@ include("php/connection.php");
                 </div>
               </div>
               <div class="p-t-15">
-                <input
+                <button
                   class="btn btn--radius-2 btn--blue"
-                  type="submit"
+                  onclick=""
                   id="submitButtom"
+                  
                 >
-                </input>
+                Submit
+                </button>
               </div>
               <div class="text-center p-t-12">
 						<span class="txt1">
@@ -209,11 +209,12 @@ include("php/connection.php");
     <script src="vendor/select2/select2.min.js"></script>
     <script src="vendor/datepicker/moment.min.js"></script>
     <script src="vendor/datepicker/daterangepicker.js"></script>
-
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
     <!-- Main JS-->
     <script src="js/global.js"></script>
-    <script src="js/retailer-js.js"></script>
+    <script src="js/validateR.js"></script>
+
+    
   </body>
-  <!-- This templates was made by Colorlib (https://colorlib.com) -->
 </html>
 <!-- end document-->

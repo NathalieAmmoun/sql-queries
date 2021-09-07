@@ -20,11 +20,11 @@ include ("php/connection.php");
     <script src="vendor/select2/select2.min.js"></script>
     <script src="vendor/datepicker/moment.min.js"></script>
     <script src="vendor/datepicker/daterangepicker.js"></script>
+    
 
     <!-- Main JS-->
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
     <script src="js/global.js"></script>
-    <script src="js/jquery-3.3.1.min.js"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
     <script src="js/bootstrap.min.js"></script>
     <script src="js/jquery.magnific-popup.min.js"></script>
     <script src="js/jquery-ui.min.js"></script>
@@ -34,6 +34,7 @@ include ("php/connection.php");
     <script src="js/owl.carousel.min.js"></script>
     <script src="js/jquery.nicescroll.min.js"></script>
     <script src="js/main.js"></script>
+    
 
     <!-- Css Styles -->
     <link rel="stylesheet" href="css/bootstrap.min.css" type="text/css">
@@ -64,13 +65,13 @@ include ("php/connection.php");
           let html_to_append = "";
           for (var i=0; i<data.length; i++) {
             console.log(data[i]); 
-            this.html_to_append =
+            html_to_append =
             `<div class="row">
             <div class="col-lg-4 col-md-6" >
             <div class="product__item" >
             <div class="product__item__pic set-bg" data-setbg= './uploads/${data[i].image}'>
             <ul class="product__hover">
-                <li><a href="./uploads/${data[i].image}" class="image-popup"><span class="arrow_expand"></span></a></li>
+                <li><img src="./uploads/${data[i].image}" class="image-popup"><span class="arrow_expand"></span></li>
                       <li><a href="#"><span class="icon_heart_alt"></span></a></li>
                           <li><a href="#"><span class="icon_bag_alt"></span></a></li>
                             </ul>
@@ -83,7 +84,8 @@ include ("php/connection.php");
                     </div>
                 </div>
       </div>`;
-          $("#products").append(this.html_to_append);}}
+      console.log(html_to_append);
+          $("#products").append(html_to_append);}}
       });
     }
   </script>

@@ -5,11 +5,12 @@ include "connection.php";
 if(isset($_POST["name"]) && $_POST["name"] != "" && strlen($_POST["name"]) >= 3) {
     $name = $_POST["name"];
 }else{
-    die ("Enter a valid input");
+    die ("Enter a valid name");
 }
 
 if(isset($_POST["email"]) && $_POST["email"] != "" ) {
     $email = $_POST["email"];
+    
 }else{
     die ("Enter a valid input");
 }
@@ -53,7 +54,6 @@ $stmt2 = $connection->prepare($sql2);
 $stmt2->bind_param("sssss", $name, $phone, $email, $hash, $city);
 $stmt2->execute();
 $result2 = $stmt2->get_result();
-
 $_SESSION["name"] = $name;
 header('location: ../addToStore.php');
 }

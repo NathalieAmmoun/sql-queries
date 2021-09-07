@@ -24,6 +24,7 @@ include("php/connection.php");
     <link rel="stylesheet" href="css/owl.carousel.min.css" type="text/css">
     <link rel="stylesheet" href="css/slicknav.min.css" type="text/css">
     <link rel="stylesheet" href="css/style.css" type="text/css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
 
     <!-- Title Page-->
     <title>Elite Shopper | Register</title>
@@ -166,15 +167,9 @@ include("php/connection.php");
               <div class="row row-space">
                 <div class="col-6">
                   <div class="input-group">
-
-                     <?php
-                      if (!empty($_SESSION["flash"])){
-                      $x = $_SESSION["flash"];
-                    ?>
                       <label class="label">
-                      <?php echo $x;} else{echo "Email";} ?>   
-                      </label>
-                      
+                     Email 
+                      </label>     
                     <input
                       class="input--style-4"
                       required
