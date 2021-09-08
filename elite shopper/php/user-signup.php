@@ -69,7 +69,7 @@ $stmt1->execute();
 $result = $stmt1->get_result();
 $row = $result->fetch_assoc();
 
-if(empty($row)){
+if(!$row){
 $sql2 = "INSERT INTO `users` (`first_name`, `last_name`, `gender`, `phone`, `email`, `password`, `dob`, `city`) VALUES (?, ?, ?, ?, ?, ?, ?, ?);"; #add the new user to the database
 $hash = hash('sha256', $password);
 $stmt2 = $connection->prepare($sql2);

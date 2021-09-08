@@ -1,6 +1,12 @@
 <?php
 session_start();
 include("php/connection.php");
+$sql="SELECT * FROM products ORDER BY uploaded_on DESC"; 
+    $stmt1 =$connection->prepare($sql);
+    $stmt1 ->execute();
+    global $result;
+    $result  = $stmt1->get_result();
+    global $imageURL , $img_name;
 ?>
 <!DOCTYPE html>
 <html lang="zxx">
@@ -22,23 +28,25 @@ include("php/connection.php");
     <link rel="stylesheet" href="css/bootstrap.min.css" type="text/css">
     <link rel="stylesheet" href="css/font-awesome.min.css" type="text/css">
     <link rel="stylesheet" href="css/elegant-icons.css" type="text/css">
-    <link rel="stylesheet" href="css/jquery-ui.min.css" type="text/css">
+    <!--<link rel="stylesheet" href="css/jquery-ui.min.css" type="text/css">-->
     <link rel="stylesheet" href="css/magnific-popup.css" type="text/css">
     <link rel="stylesheet" href="css/owl.carousel.min.css" type="text/css">
     <link rel="stylesheet" href="css/slicknav.min.css" type="text/css">
     <link rel="stylesheet" href="css/style.css" type="text/css">
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
 </head>
+<!-- assign unique id to each shopping item--> 
 <script>
     $(document).ready(function(){
         let bag =$(".icon_bag_alt");
         for (let i=0; i<bag.length; i++){
-            bag.attr('id', i);
+            bag.attr('id', 'bag '+i);
         }
 
 
     });
     </script>
+    
 <body>
     <!-- Page Preloder -->
     <div id="preloder">
@@ -51,8 +59,8 @@ include("php/connection.php");
         <div class="offcanvas__close">+</div>
         <ul class="offcanvas__widget">
             <li><span class="icon_search search-switch"></span></li>
-            <li><a href="shop-cart.php"><span class="icon_bag_alt"></span>
-                <div class="tip">0</div>
+            <li><a href="#"><span class="icon_bag_alt"></span>
+                <div class="tip" id="amount">0</div>
             </a></li>
         </ul>
         <div class="offcanvas__logo">
@@ -86,22 +94,42 @@ include("php/connection.php");
                                     <li><a href="./checkout.php">Checkout</a></li>
                                 </ul>
                             </li>
+                            <!-- if SHOP OWNER REGISTERED -->
+                            <?php if(isset($_SESSION['rid'])){
+    ?>
                             <li><a href="./addToStore.php">Sell Online</a></li>
+                            <?php } ?>
                             <li><a href="./contact.php">Contact</a></li>
                         </ul>
                     </nav>
                 </div>
                 <div class="col-lg-3">
                     <div class="header__right">
+
+                    <!-- SHOW SELLER NAME IF LOGGED IN-->
+                        <?php if(isset($_SESSION['rid']) && isset($_SESSION['name']) && $_SESSION['name']!=""){
+    ?>
+    <div class="header__right__auth">
+        Hello <?php echo $_SESSION['name'] ;?>! :)
+        </div>
+        <?php } ?>
+        <!-- SHOW SHOPPER NAME IF LOGGED IN-->
+        <?php 
+        if(isset($_SESSION['first_name']) && $_SESSION['first_name']!=""){
+    ?>
+    <div class="header__right__auth">
+        Hello <?php echo $_SESSION['first_name'] ;?>! :)
+        </div> <?php } ?>
                         <div class="header__right__auth">
                             <a href="./login-page.php">Login</a>
                             <a href="./ret-or-shopper.php">Register</a>
                         </div>
                         <ul class="header__right__widget">
                             <li><span class="icon_search search-switch"></span></li>
-                            <li><a href="./shop-cart.php"><span class="icon_bag_alt"></span>
-                                <div class="tip">0</div>
+                            <li><a href="#"><span class="icon_bag_alt"></span>
+                                <div class="tip" id="amount2">0</div>
                             </a></li>
+
                         </ul>
                     </div>
                 </div>
@@ -193,7 +221,31 @@ include("php/connection.php");
             </div>
         </div>
         <div class="row property__gallery">
+        <?php 
+              
+              while($row = $result->fetch_assoc()){
+  
+              $imageURL = 'uploads/'.$row["image_url"];
+               $img_name = $row["name"];
+      }?>
             <div class="col-lg-3 col-md-4 col-sm-6 mix women">
+                
+            
+            <div class="product__item" >
+                <div class="product__item__pic set-bg" data-setbg= '<?php echo $imageURL; ?>'>
+                    <ul class="product__hover">
+                        <li><a href="<?php echo $imageURL; ?>" class="image-popup"><span class="arrow_expand"></span> </a></li>
+                        <li><a href="#"><span class="icon_heart_alt"></span></a></li>
+                        <li><a href="#"><span class="icon_bag_alt"></span></a></li>
+                          </ul>
+                    </div>
+                    <div class="product__item__text"><?php echo $img_name; ?></div>
+                </div>
+            </div>
+        </div>
+       
+<div class="row">
+        <div class="col-lg-3 col-md-4 col-sm-6 mix women">
                 <div class="product__item">
                     <div class="product__item__pic set-bg" data-setbg="img/product/product-1.jpg">
                         <div class="label new">New</div>
@@ -212,7 +264,7 @@ include("php/connection.php");
                             <i class="fa fa-star"></i>
                             <i class="fa fa-star"></i>
                         </div>
-                        <div class="product__price">Free</div>
+                        <div class="product__price">0$</div>
                     </div>
                 </div>
             </div>
@@ -234,7 +286,7 @@ include("php/connection.php");
                             <i class="fa fa-star"></i>
                             <i class="fa fa-star"></i>
                         </div>
-                        <div class="product__price">Free</div>
+                        <div class="product__price">0$</div>
                     </div>
                 </div>
             </div>
@@ -257,7 +309,7 @@ include("php/connection.php");
                             <i class="fa fa-star"></i>
                             <i class="fa fa-star"></i>
                         </div>
-                        <div class="product__price">Free</div>
+                        <div class="product__price">0$</div>
                     </div>
                 </div>
             </div>
@@ -279,7 +331,7 @@ include("php/connection.php");
                             <i class="fa fa-star"></i>
                             <i class="fa fa-star"></i>
                         </div>
-                        <div class="product__price">Free</div>
+                        <div class="product__price">0$</div>
                     </div>
                 </div>
             </div>
@@ -301,7 +353,7 @@ include("php/connection.php");
                             <i class="fa fa-star"></i>
                             <i class="fa fa-star"></i>
                         </div>
-                        <div class="product__price">Free</div>
+                        <div class="product__price">0$</div>
                     </div>
                 </div>
             </div>
@@ -324,7 +376,7 @@ include("php/connection.php");
                             <i class="fa fa-star"></i>
                             <i class="fa fa-star"></i>
                         </div>
-                        <div class="product__price">Free</div>
+                        <div class="product__price">0$</div>
                     </div>
                 </div>
             </div>
@@ -346,7 +398,7 @@ include("php/connection.php");
                             <i class="fa fa-star"></i>
                             <i class="fa fa-star"></i>
                         </div>
-                        <div class="product__price">Free</div>
+                        <div class="product__price">0$</div>
                     </div>
                 </div>
             </div>
@@ -369,7 +421,7 @@ include("php/connection.php");
                             <i class="fa fa-star"></i>
                             <i class="fa fa-star"></i>
                         </div>
-                        <div class="product__price">Free</div>
+                        <div class="product__price">0$</div>
                     </div>
                 </div>
             </div>
@@ -434,7 +486,7 @@ include("php/connection.php");
                                 <i class="fa fa-star"></i>
                                 <i class="fa fa-star"></i>
                             </div>
-                            <div class="product__price">Free</div>
+                            <div class="product__price">0$</div>
                         </div>
                     </div>
                     <div class="trend__item">
@@ -450,7 +502,7 @@ include("php/connection.php");
                                 <i class="fa fa-star"></i>
                                 <i class="fa fa-star"></i>
                             </div>
-                            <div class="product__price">Free</div>
+                            <div class="product__price">0$</div>
                         </div>
                     </div>
                     <div class="trend__item">
@@ -466,7 +518,7 @@ include("php/connection.php");
                                 <i class="fa fa-star"></i>
                                 <i class="fa fa-star"></i>
                             </div>
-                            <div class="product__price">Free</div>
+                            <div class="product__price">0$</div>
                         </div>
                     </div>
                 </div>
@@ -489,7 +541,7 @@ include("php/connection.php");
                                 <i class="fa fa-star"></i>
                                 <i class="fa fa-star"></i>
                             </div>
-                            <div class="product__price">Free</div>
+                            <div class="product__price">0$</div>
                         </div>
                     </div>
                     <div class="trend__item">
@@ -505,7 +557,7 @@ include("php/connection.php");
                                 <i class="fa fa-star"></i>
                                 <i class="fa fa-star"></i>
                             </div>
-                            <div class="product__price">Free</div>
+                            <div class="product__price">0$</div>
                         </div>
                     </div>
                     <div class="trend__item">
@@ -521,7 +573,7 @@ include("php/connection.php");
                                 <i class="fa fa-star"></i>
                                 <i class="fa fa-star"></i>
                             </div>
-                            <div class="product__price">Free</div>
+                            <div class="product__price">0$</div>
                         </div>
                     </div>
                 </div>
@@ -544,7 +596,7 @@ include("php/connection.php");
                                 <i class="fa fa-star"></i>
                                 <i class="fa fa-star"></i>
                             </div>
-                            <div class="product__price">Free</div>
+                            <div class="product__price">0$</div>
                         </div>
                     </div>
                     <div class="trend__item">
@@ -560,7 +612,7 @@ include("php/connection.php");
                                 <i class="fa fa-star"></i>
                                 <i class="fa fa-star"></i>
                             </div>
-                            <div class="product__price">Free</div>
+                            <div class="product__price">0$</div>
                         </div>
                     </div>
                     <div class="trend__item">
@@ -576,7 +628,7 @@ include("php/connection.php");
                                 <i class="fa fa-star"></i>
                                 <i class="fa fa-star"></i>
                             </div>
-                            <div class="product__price">Free</div>
+                            <div class="product__price">0$</div>
                         </div>
                     </div>
                 </div>
@@ -635,7 +687,7 @@ include("php/connection.php");
             <div class="col-lg-3 col-md-4 col-sm-6">
                 <div class="services__item">
                     <i class="fa fa-car"></i>
-                    <h6>Free Shipping</h6>
+                    <h6>0$ Shipping</h6>
                     <p>For all oder over $99</p>
                 </div>
             </div>
@@ -815,6 +867,8 @@ include("php/connection.php");
 <script src="js/owl.carousel.min.js"></script>
 <script src="js/jquery.nicescroll.min.js"></script>
 <script src="js/main.js"></script>
+<script src="js/addToCart.js"></script>
+<script src="js/displayProducts.js"></script>
 </body>
 
 </html>

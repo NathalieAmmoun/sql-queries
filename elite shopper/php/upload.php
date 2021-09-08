@@ -8,7 +8,7 @@ $targetDir ="../uploads/";
 $fileName = $_FILES["img"]["name"];
 $targetFilePath = $targetDir . $fileName;
 $fileType = pathinfo($targetFilePath,PATHINFO_EXTENSION);
-
+$retailer_id = $_SESSION['rid'];
 if(isset($_POST["item_name"]) && $_POST["item_name"] !=""){
 
     $name=$_POST["item_name"];
@@ -27,9 +27,9 @@ if(isset($_POST) && isset($_FILES["img"])){
         if(move_uploaded_file($_FILES["img"]["tmp_name"], $targetFilePath)){
             // Insert image file name into database
             $now = date('y-m-d h:i:s');
-            $insert = "INSERT into products (name,description,image, uploaded_on) VALUES (?,?,?,?)";
+            $insert = "INSERT into products (name,description,image_url, uploaded_on, retailers_id) VALUES (?,?,?,?,?)";
             $stmt= $connection->prepare($insert);
-            $stmt->bind_param("ssss", $name, $description, $fileName, $now);
+            $stmt->bind_param("ssssi", $name, $description, $fileName, $now, $retailer_id);
             $stmt->execute();
             if($stmt){
                 $statusMsg = "The file ".$fileName. " has been uploaded successfully.";

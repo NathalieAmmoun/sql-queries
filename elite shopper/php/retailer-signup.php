@@ -1,7 +1,6 @@
 <?php
 session_start();
 include "connection.php";
-
 if(isset($_POST["name"]) && $_POST["name"] != "" && strlen($_POST["name"]) >= 3) {
     $name = $_POST["name"];
 }else{
@@ -47,14 +46,18 @@ $stmt1->execute();
 $result = $stmt1->get_result();
 $row = $result->fetch_assoc();
 
-if(empty($row)){
+if(!$row){
 $sql2 = "INSERT INTO `retailers` (`name`, `phone`, `email`, `password`, `city`) VALUES (?, ?, ?, ?, ?);"; #add the new retailer to the database
 $hash = hash('sha256', $password);
 $stmt2 = $connection->prepare($sql2);
 $stmt2->bind_param("sssss", $name, $phone, $email, $hash, $city);
 $stmt2->execute();
 $result2 = $stmt2->get_result();
+
+$id = $_GET['id'];
+$_SESSION["rid"] = $id;
 $_SESSION["name"] = $name;
+
 header('location: ../addToStore.php');
 }
 else{

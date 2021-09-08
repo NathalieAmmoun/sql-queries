@@ -82,7 +82,7 @@ include("php/connection.php");
         <div class="card card-4">
           <div class="card-body">
             <h2 class="title">Login</h2>
-            <form method="POST" id="signupForm" action="php/login.php" method="POST">
+            <form id="signupForm" action="php/login.php" method="POST">
               <div class="">
                 <div class="">
                   <div class="input-group">

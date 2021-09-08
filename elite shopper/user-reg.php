@@ -76,7 +76,7 @@ include("php/connection.php");
                             <li><a href="#">Pages</a>
                                 <ul class="dropdown">
                 
-                                    <li><a href="./shop-cart.php">Shop Cart</a></li>
+                                    <li><a href="#">Shop Cart</a></li>
                                    
                                 </ul>
                             </li>
@@ -142,7 +142,7 @@ include("php/connection.php");
                         "
                       ></i>
                     </div>
-                    <div class="alert alert-danger" role="alert" id="dob-a">
+                    <div class="alert alert-danger" role="alert" id="dob-a" hidden="true">
                         </div>
                   </div>
                 </div>
@@ -177,7 +177,7 @@ include("php/connection.php");
                       type="email"
                       name="email"
                     />
-                    <div class="alert alert-danger" role="alert" id="email-a">
+                    <div class="alert alert-danger" role="alert" id="email-a" hidden="true">
                         </div>
                   </div>
                 </div>
@@ -192,7 +192,7 @@ include("php/connection.php");
                       name="phone"
                     />
                   </div>
-                  <div class="alert alert-danger" role="alert" id="phone-a">
+                  <div class="alert alert-danger" role="alert" id="phone-a" hidden="true">
                         </div>
                 </div>
               </div>
@@ -221,7 +221,7 @@ include("php/connection.php");
                       id="confirmPassword"
                     />
                   </div>
-                  <div class="alert alert-danger" role="alert" id="pass-a">
+                  <div class="alert alert-danger" role="alert" id="pass-a" hidden="true">
                         </div>
                 </div>
               </div>
@@ -269,7 +269,8 @@ include("php/connection.php");
 
     <!-- Main JS-->
     <script src="js/global.js"></script>
-    <script src="js/user-js.js"></script>
+    <script src="js/validateS.js"></script>
+    <script src="js/addToCart.js"></script>
   </body>
   <!-- This templates was made by Colorlib (https://colorlib.com) -->
 </html>

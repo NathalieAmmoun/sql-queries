@@ -14,9 +14,11 @@
 			die("enter password");
 	}	
 	
+	$_SESSION['uid']=''; 	//user id in session
+	$_SESSION['rid']='';	//retailer id in session
 	//select from users table
 
-
+	
 	$query = "SELECT * FROM users WHERE email = ? and password = ?";
 	$stmt = $connection->prepare($query);
 	$stmt->bind_param("ss",$email, $password);
@@ -46,7 +48,7 @@
 	}elseif($_SESSION['uid'] != "" && $_SESSION['rid']!=""){	//if user is found in both tables
 		header("location: ../addToStore.php");
 	}elseif($_SESSION['uid'] != ""){		//if user is a buyer
-		header("location: ../shop.php");
+		header("location: ../index.php");
 	}elseif($_SESSION['rid'] != ""){		//if user is a seller
 		header("location: ../addToStore.php");
 	}

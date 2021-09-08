@@ -1,3 +1,4 @@
+window.onload = function(){
 let butn= document.getElementById("submitButtom");
 let emailElement =  document.getElementById("email");
 let phoneElement =  document.getElementById("phone");
@@ -49,4 +50,4 @@ function validate(){
         }
         return false;
       }
-      
+}

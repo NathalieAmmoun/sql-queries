@@ -76,20 +76,38 @@ include("php/connection.php");
                                     <li><a href="./shop-cart.php">Shop Cart</a></li>
                                 </ul>
                             </li>
+                            <!-- SHOW SELL ONLINE LINk TO SELLER -->
+                            <?php if(isset($_SESSION['rid'])){
+    ?>
                             <li><a href="./addToStore.php">Sell Online</a></li>
+                            <?php } ?>
                             <li><a href="./contact.php">Contact</a></li>
                         </ul>
                     </nav>
                 </div>
                 <div class="col-lg-3">
                     <div class="header__right">
+                   <!-- SHOW SELLER NAME IF LOGGED IN-->
+                   <?php if(isset($_SESSION['rid']) && isset($_SESSION['name']) && $_SESSION['name']!=""){
+    ?>
+    <div class="header__right__auth">
+        Hello <?php echo $_SESSION['name'] ;?>! :)
+        </div>
+        <?php } ?>
+        <!-- SHOW SHOPPER NAME IF LOGGED IN-->
+        <?php 
+        if(isset($_SESSION['first_name']) && $_SESSION['first_name']!=""){
+    ?>
+    <div class="header__right__auth">
+        Hello <?php echo $_SESSION['first_name'] ;?>! :)
+        </div> <?php } ?>
                         <div class="header__right__auth">
                             <a href="./login-page.php">Login</a>
                             <a href="/./ret-or-shopper.php">Register</a>
                         </div>
                         <ul class="header__right__widget">
                             <li><span class="icon_search search-switch"></span></li>
-                            <li><a href="./shop-cart"><span class="icon_bag_alt"></span>
+                            <li><a href="#"><span class="icon_bag_alt"></span>
                                 <div class="tip">0</div>
                             </a></li>
                         </ul>

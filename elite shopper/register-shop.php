@@ -24,10 +24,11 @@ include("php/connection.php");
     <link rel="stylesheet" href="css/owl.carousel.min.css" type="text/css">
     <link rel="stylesheet" href="css/slicknav.min.css" type="text/css">
     <link rel="stylesheet" href="css/style.css" type="text/css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
     
 
     <!-- Title Page-->
-    <title>Elite Shopper | Register</title>
+    <title>Elite Shopper | Shop Register</title>
 
     <!-- Icons font CSS-->
     <link
@@ -79,7 +80,11 @@ include("php/connection.php");
                                     <li><a href="./checkout.php">Checkout</a></li>
                                 </ul>
                             </li>
+                            
+                            <?php if(isset($_SESSION['rid'])){
+    ?>
                             <li><a href="./addToStore.php">Sell Online</a></li>
+                            <?php } ?>
                             <li><a href="./contact.php">Contact</a></li>
                         </ul>
                     </nav>
@@ -95,7 +100,7 @@ include("php/connection.php");
         <div class="card card-4">
           <div class="card-body">
             <h2 class="title">Register</h2>
-            <form method="POST" id="signupForm" >
+            <form method="POST" id="signupForm" action="php/retailer-signup.php" >
               <div class="row row-space">
                 <div class="col-6">
                   <div class="input-group">
