@@ -15,6 +15,6 @@ if(isset($_SESSION['id']) && $_SESSION['id']!=""){
 $json = json_encode($cat_amm, JSON_PRETTY_PRINT);
 echo $json;}
 else{
-    die("no user data");
+    header("location:../login.php");
 }
 ?>

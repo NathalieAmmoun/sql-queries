@@ -23,7 +23,7 @@ if (isset($_POST["category"]) && $_POST["category"]!=""){
 
 if(isset($_SESSION['id'])){
     $user_id = $_SESSION['id'];
-} else{die("please login to proceed");}
+} else{header("location:../login.php");}
 
     $query = "INSERT INTO expenses (name, amount, date, user_id, category_id) VALUES (?,?,?,?,?)";
 	$stmt = $connection->prepare($query);

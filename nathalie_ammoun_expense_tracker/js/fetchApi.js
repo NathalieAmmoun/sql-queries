@@ -236,7 +236,6 @@ async function fetchUser(){
     return results1; 
 }
 fetchUser().then(user => {
-    console.log(user);
-    $("#user").html(user.first_name);
+    $("#user").html(`${user[0].first_name} ${user[0].last_name}`);
 });
 });

@@ -15,6 +15,6 @@ while($row = $result->fetch_assoc()){
 $json = json_encode($user, JSON_PRETTY_PRINT);
 echo $json;}
 else{
-    die("no user data");
+    header("location:../login.php");
 }
 ?>

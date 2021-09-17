@@ -1,6 +1,12 @@
 <?php
 session_start();
 include("php/connection.php");
+if(
+    !isset($_SESSION['id'])
+    || ($_SESSION['id'] == '')
+    ) {
+    header("location:./login.php");
+    }
 ?>
 
 <!DOCTYPE html>
@@ -99,7 +105,8 @@ include("php/connection.php");
                 <div class="section__content section__content--p30">
                     <div class="container-fluid">
                         <div class="header-wrap">
-                            <div class="header-button">
+                            <div id="login"><a href="./login.php">Login</a>/<a href="./register.php">Register</a></div>
+                            <div class="header-button float-right">
                                 <div class="account-wrap">
                                     <div class="account-item clearfix js-item-menu">
                                         <div class="image">
