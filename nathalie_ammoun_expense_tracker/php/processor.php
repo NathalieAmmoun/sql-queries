@@ -4,22 +4,22 @@ include "connection.php";
 
 if (isset($_POST["item_name"]) && $_POST["item_name"]!=""){
     $item_name = $_POST["item_name"];
-}else {echo("item doesn't have name");}
+
+}else {die("item doesn't have name");}
 
 if (isset($_POST["amount"]) && $_POST["amount"]!=""){
     $amount = $_POST["amount"];
-}else {echo("enter amount");}
+}else {die("enter amount");}
 
-if (isset($_POST["date"]) && $_POST["date"]!=""){
+if (isset($_POST["date"]) && !empty($_POST["date"])){
     $date = $_POST["date"];
-    $time = strtotime($birthday);
-    $newformat = date('Y-m-d',$time);
-    $currentDate = date("Y-m-d");
-}else {echo("enter valid date");}
+    echo $date;
+}else {die("enter valid date");}
 
 if (isset($_POST["category"]) && $_POST["category"]!=""){
     $category = $_POST["category"];
-}else {echo("enter category");}
+    echo $category;
+}else {die("enter category");}
 
 if(isset($_SESSION['id'])){
     $user_id = $_SESSION['id'];
@@ -27,8 +27,7 @@ if(isset($_SESSION['id'])){
 
     $query = "INSERT INTO expenses (name, amount, date, user_id, category_id) VALUES (?,?,?,?,?)";
 	$stmt = $connection->prepare($query);
-	$stmt->bind_param("ss",$name, $user_id);
+	$stmt->bind_param("sssss", $item_name,$amount,$date, $user_id, $category);
 	$stmt->execute();
 	$result = $stmt->get_result();
     
-    $result.close();

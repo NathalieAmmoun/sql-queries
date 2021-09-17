@@ -20,6 +20,7 @@ $query = "SELECT * FROM users WHERE email = ? and password = ?";
 	$user_data = $result->fetch_assoc();
     
     if(!empty($user_data)){
+        session_start();
         $_SESSION["id"] = $user_data["id"];
         $_SESSION["firstName"] =$user_data["first_name"];
 		$_SESSION["lastName"] = $user_data["last_name"];
