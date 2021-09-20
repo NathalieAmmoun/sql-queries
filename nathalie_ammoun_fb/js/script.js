@@ -1,14 +1,25 @@
 $(document).ready(function(){
     $("#searchBtn").click(search);
     $("#search_table").hide();
-    addFriend();
+    
+    //AlERTS
+
     $('#success').hide();
+    $('#blocked').hide();
+    $('#removed').hide();
+    $('#updated').hide();
+
+    //
     displayNotif();
+    addFriend();
     acceptRequest();
     okResponse();
     declineRequest();
-    
-})
+    displayFriends();
+    blockUser();
+    removeFriend();
+    updateProfile();
+});
 var count_notif=0;
 $("#notif").html(count_notif);
 async function searchAPI(keyword){
@@ -26,8 +37,9 @@ async function searchAPI(keyword){
     return results;
 } 
 function search(){
-    $('#s_table tbody').empty();
-    let keyword = $("#search").val();
+      let keyword = $("#search").val();
+    
+    
     searchAPI(keyword).then(results => {
         if(results.length>0){
         let row = "";
@@ -52,6 +64,8 @@ function search(){
                     </button></td>
                     </tr>`
         });
+        
+        $('#s_table tbody').empty();
         $("#table_title").html("Search Results");
         $("#search_body").append(row);}else{
             let noResults="0 Results";
@@ -62,13 +76,48 @@ function search(){
     })
     
 }
+function displayFriends(){
+    friendsListAPI().then(friends => {
+        if(friends.length>0){
+        let row = "";
+        friends.forEach(friend => {
+            let gender="";
+            if(friend.gender == 1){
+                gender = "Female";
+            }else if(friend.gender == 2){
+                gender = "Male";
+            }else{
+                gender = "Other";
+            }
+            row +=`<tr id="tr_${friend.id}">
+                    <td>${friend.first_name} ${friend.last_name}</td>
+                    <td>${gender}</td>
+                    <td>${friend.dob}</td>
+                    <td class="text-center"><button id='remove_${friend.id}' class="btn btn-warning remove" type="button">
+                        Remove
+                    </button></td>
+                    <td class="text-center"><button id='block_${friend.id}' class="btn btn-danger block" type="button">
+                        <i class="zmdi zmdi-block"></i>
+                    </button></td>
+                    </tr>`
+        });
+        $("#friends_body").append(row);
+    }
+
+    })
+    
+}
 
 function addFriend(){
     $(document).on("click", ".add", function () {
         let id =this.id.replace(/add_/,'');
-        addRequestAPI(id);
-        successAlert();
-        $("#add_"+id).fadeOut();
+        addRequestAPI(id).then(response=>{
+            if(response.success==1){
+                successAlert();
+                $("#add_"+id).fadeOut();
+            }
+        });
+        
     });
         }
 
@@ -77,7 +126,6 @@ function displayNotif(){
     addNotificationsAPI().then(addNotif=>{
         let add_row="";
         count_notif=addNotif.length;
-        console.log(count_notif);
         $("#notif").html(count_notif);
         addNotif.forEach(notif =>{
             add_row+=`<div class="notifi__item" id="add_notif_${notif.id}">
@@ -100,6 +148,14 @@ function displayNotif(){
         $("#notif_drop").append(add_row);
     }
         )
+        pendingAPI().then(pending=>{
+            let list="";
+            pending.forEach(request=>{
+                list+=`<tr id="pen_${request.id}"><td>
+            <strong>${request.first_name} ${request.last_name}</strong> Request Pending</td></tr>`
+            }) 
+            $("#sent-requests").append(list);
+        })
         acceptNotificationsAPI().then(accNotif=>{
             let add_row="";
             count_notif+=accNotif.length;
@@ -107,6 +163,8 @@ function displayNotif(){
             $("#notif").html(count_notif);
 
             accNotif.forEach(notif =>{
+                let id= "#pen_"+ notif.id;
+                $(id).remove();
                 add_row+=`<div class="notifi__item" id="acc_notif_${notif.id}">
                                                     
                 <div class="bg-c2 img-cir img-40">
@@ -121,10 +179,13 @@ function displayNotif(){
                 </div>
     </div>
     </div>`
+            
             })
             $("#notif_drop").append(add_row);
+
         }
             )
+            
 }
 
 async function addRequestAPI(id){
@@ -153,10 +214,30 @@ async function addNotificationsAPI(){
 
 function successAlert(){
     $('#success').fadeIn();
-    console.log("request sent");
     setTimeout(function(){
         $('#success').fadeOut();
     }, 2000);
+    
+}
+function blockAlert(){
+    $('#blocked').fadeIn();
+    setTimeout(function(){
+        $('#blocked').fadeOut();
+    }, 2000);
+    
+}
+function removedAlert(){
+    $('#removed').fadeIn();
+    setTimeout(function(){
+        $('#removed').fadeOut();
+    }, 2000);
+    
+}
+function updatedAlert(){
+    $('#updated').fadeIn();
+    setTimeout(function(){
+        $('#updated').fadeOut();
+    }, 1500);
     
 }
 function acceptRequest(){
@@ -164,12 +245,42 @@ function acceptRequest(){
        
         
         let id =this.id.replace(/accept_/,'');
-        acceptRequestAPI(id);
-        setTimeout(function(){
-            $("#add_notif_"+id).fadeOut();
-            count_notif-=1;
-            $("#notif").html(count_notif);
-        }, 500);
+        acceptRequestAPI(id).then(response=>{
+            if (response.success == 1){
+                setTimeout(function(){
+                    $("#add_notif_"+id).fadeOut();
+                    count_notif-=1;
+                    $("#notif").html(count_notif);
+                }, 500);}
+        });
+        
+        
+    })
+}
+function blockUser(){
+    $("#container").on("click", ".block", function(){
+        let id =this.id.replace(/block_/,'');
+        blockUserAPI(id).then(response=>{
+            if (response.success == 1){
+                blockAlert();
+                $("#tr_"+id).fadeOut();}
+        });
+        
+    })
+}
+function removeFriend(){
+    $("#container").on("click", ".remove", function(){
+       
+        
+        let id =this.id.replace(/remove_/,'');
+        removeFriendAPI(id).then(response=>{
+            if (response.success == 1){
+                removedAlert()
+                $("#tr_"+id).fadeOut();
+            }
+        });
+        
+     
         
     })
 }
@@ -185,6 +296,8 @@ async function acceptRequestAPI(id){
 }
 
 
+
+
 async function acceptNotificationsAPI(){
     const response = await fetch("http://localhost/nathalie_ammoun_fb/php/acceptNotification.php")
     
@@ -197,16 +310,32 @@ async function acceptNotificationsAPI(){
     return accNotif;
 }
 
+async function pendingAPI(){
+    const response = await fetch("http://localhost/nathalie_ammoun_fb/php/pending.php")
+    
+    if(!response.ok){
+        const message = "ERROR OCCURED";
+        throw new Error(message);
+    }
+    
+    const pending = await response.json();
+    return pending;
+}
+
 function okResponse(){
     $("#notif_drop").on("click", ".okay", function(){
         let id = this.id.replace(/ok_/,'');
 
-        okResponseAPI(id);
-        setTimeout(function(){
-            $("#acc_notif_"+id).fadeOut();
-            count_notif-=1;
-            $("#notif").html(count_notif);
-        }, 500);
+        okResponseAPI(id).then(response=>{
+            if(response.success==1){
+                setTimeout(function(){
+                    $("#acc_notif_"+id).fadeOut();
+                    count_notif-=1;
+                    $("#notif").html(count_notif);
+                }, 500);
+            }
+        });
+        
         
         
     })
@@ -226,13 +355,15 @@ async function okResponseAPI(id){
 function declineRequest(){
     $("#notif_drop").on("click", ".decline", function(){
         let id =this.id.replace(/decline_/,'');
-        declineRequestAPI(id);
-        setTimeout(function(){
-            $("#add_notif_"+id).fadeOut();
-            count_notif-=1;
-            $("#notif").html(count_notif);
-        }, 500);
-        
+        declineRequestAPI(id).then(response =>{
+            if(response.success==1){
+                setTimeout(function(){
+                    $("#add_notif_"+id).fadeOut();
+                    count_notif-=1;
+                    $("#notif").html(count_notif);
+                }, 500);
+            }
+        });
     })
 }
 
@@ -246,3 +377,84 @@ async function declineRequestAPI(id){
     const decline = await response.json();
     return decline;
 }
+
+async function friendsListAPI(){
+    const response = await fetch("http://localhost/nathalie_ammoun_fb/php/friendsList.php")
+    
+    if(!response.ok){
+        const message = "ERROR OCCURED";
+        throw new Error(message);
+    }
+    
+    const list = await response.json();
+    return list;
+}
+
+async function blockUserAPI(id){
+    const response = await fetch("http://localhost/nathalie_ammoun_fb/php/block.php?id=" + id)
+    
+    if(!response.ok){
+        const message = "ERROR OCCURED";
+        throw new Error(message);
+    }
+    
+    const block = await response.json();
+    return block;
+}
+async function removeFriendAPI(id){
+    const response = await fetch("http://localhost/nathalie_ammoun_fb/php/removeFriend.php?id=" + id)
+    
+    if(!response.ok){
+        const message = "ERROR OCCURED";
+        throw new Error(message);
+    }
+    
+    const removed = await response.json();
+    return removed;
+}
+function updateProfile(){
+
+    $("#updateBtn").click(function () {
+    var formData = $("#update-form").serialize();
+    updated=false;
+    updateProfileAPI(formData).then(response=>{
+        if(response.success == 1){
+            updatedAlert();
+            setTimeout(function(){document.location.replace("./index.php")},2000);
+           
+        }
+    });
+
+});
+}
+
+async function updateProfileAPI(formData){
+    const response = await fetch("http://localhost/nathalie_ammoun_fb/php/updateProfile.php",{
+    method: 'POST',
+    body: new URLSearchParams(formData)
+        });
+    if(!response.ok){
+        const message = "ERROR OCCURED";
+        throw new Error(message);
+    }
+    
+    const results = await response.json();
+    return results;
+}
+
+async function fetchUser(){
+    const response = await fetch('http://localhost/nathalie_ammoun_fb/php/userAPI.php');
+    if(!response.ok){
+        const message = "An Error has occured";
+        throw new Error(message);
+    }
+    const results1 = await response.json();
+    return results1; 
+}
+
+fetchUser().then(user => {
+    $("#user").html(`${user[0].first_name} ${user[0].last_name}`);
+});
+
+
+

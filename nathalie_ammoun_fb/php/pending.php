@@ -8,8 +8,8 @@ $status = 0;
 $add_notification=1;
 $query = "SELECT u.id, u.first_name, u.last_name 
             FROM users u, friends f 
-            WHERE (u.id = f.user_id1) 
-            AND (f.user_id2=?) 
+            WHERE (u.id = f.user_id2) 
+            AND (f.user_id1=?) 
             AND f.status =? AND f.add_notification =? AND u.id != ?;";
 $stmt = $connection->prepare($query);
 $stmt->bind_param("ssss",$id, $status, $add_notification, $id);

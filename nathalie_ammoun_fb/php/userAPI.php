@@ -1,4 +1,5 @@
 <?php
+header("Access-Control-Allow-Origin: *");
 session_start();
 include "connection.php";
 if(isset($_SESSION['id']) && $_SESSION['id']!=""){

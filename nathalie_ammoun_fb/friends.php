@@ -1,7 +1,6 @@
 <?php
- session_start();
- include("php/connection.php");
-
+session_start();
+include("php/connection.php");
 
 ?>
 <!DOCTYPE html>
@@ -14,9 +13,9 @@
     <meta name="description" content="au theme template">
     <meta name="author" content="Hau Nguyen">
     <meta name="keywords" content="au theme template">
-    
+
     <!-- Title Page-->
-    <title>Hompage</title>
+    <title>Friends</title>
 
     <!-- Fontfaces CSS-->
     <link href="css/font-face.css" rel="stylesheet" media="all">
@@ -62,12 +61,12 @@
             <nav class="navbar-mobile">
                 <div class="container-fluid">
                     <ul class="navbar-mobile__list list-unstyled">
-                    <li class="has-sub">
-                            <a class="" href="./index.php">
+                        <li class="has-sub" >
+                            <a class="js-arrow " href="./index.php">
                                Home</a>
                         </li>
                         <li class="has-sub">
-                            <a class="" href="./friends.php">
+                            <a class="js-arrow" href="./friends.php">
                                Friends</a>
                         </li>
                     </ul>
@@ -79,22 +78,24 @@
         <!-- MENU SIDEBAR-->
         <aside class="menu-sidebar d-none d-lg-block">
             <div class="logo">
-                <a href="./index.php">
+                <a href="#">
                     <img src="images/icon/logo.png" alt="Cool Admin" />
                 </a>
             </div>
             <div class="menu-sidebar__content js-scrollbar1">
                 <nav class="navbar-sidebar">
                     <ul class="list-unstyled navbar__list">
-                        <li class="has-sub">
-                            <a class="" href="./index.php">
+                        <li class="has-sub" >
+                            <a class="js-arrow " href="./index.php">
                                Home</a>
                         </li>
                         <li class="has-sub">
-                            <a class="" href="./friends.php">
+                            <a class="js-arrow" href="./friends.php">
                                Friends</a>
                         </li>
-                    </ul>
+                            
+                        </ul>
+                        
                 </nav>
             </div>
         </aside>
@@ -106,13 +107,8 @@
             <header class="header-desktop">
                 <div class="section__content section__content--p30">
                     <div class="container-fluid" id="page">
-                        <div class="header-wrap">
-                            <form class="form-header">
-                                <input class="au-input au-input--xl" id="search" type="text" name="search" placeholder="Search" />
-                                <button class="au-btn--submit" id="searchBtn" type="button">
-                                    <i class="zmdi zmdi-search"></i>
-                                </button>
-                            </form>
+                        <div class="header-wrap float-right">
+                           
                             <div class="header-button">
                                 <div class="noti-wrap">
                                     <div class="noti__item js-item-menu">
@@ -125,7 +121,7 @@
                                 <div class="account-wrap">
                                     <div class="account-item clearfix js-item-menu">
                                         <div class="image">
-                                            <img src="images/icon/icon.png" alt="" />
+                                            <img src="images/icon/icon.png" alt="John Doe" />
                                         </div>
                                         <div class="content">
                                             <a class="js-acc-btn" id="user" href="#"></a>
@@ -155,28 +151,27 @@
             <div class="main-content">
                 <div class="section__content section__content--p30">
                     <div class="container-fluid" id="container">
-                    <div class="alert alert-success text-center" id="success" role="alert">
-  Request Sent!
-</div>
-<div class="alert alert-danger text-center" id="blocked" role="alert">
+                    <div class="alert alert-danger" id="blocked" role="alert">
   User Blocked!
 </div>
-
+<div class="alert alert-warning" id="removed" role="alert">
+  Friend Removed!
+</div>
                         <div class="row">
-                            <div class="col-lg-9" id="search_table">
-                                <h2 class="title-1 m-b-25" id="table_title">Search Results</h2>
+                            <div class="col-lg-9" id="friends_table">
+                                <h2 class="title-1 m-b-25" >Friends List</h2>
                                 <div class="table-responsive table--no-card m-b-30">
-                                    <table class="table table-borderless table-striped table-earning" id="s_table">
+                                    <table class="table table-borderless table-striped table-earning" id="f_table">
                                         <thead>
                                             <tr>
                                                 <th>Name</th>
                                                 <th>Gender</th>
                                                 <th>Birthday</th>
-                                                <th class="text-center">Add Friend</th>
+                                                <th class="text-center">Remove Friend</th>
                                                 <th class="text-center">Block</th>
                                             </tr>
                                         </thead>
-                                        <tbody id="search_body">
+                                        <tbody id="friends_body">
                     
                                         </tbody>
                                     </table>
@@ -195,7 +190,6 @@
                                         </div>
                                     </div>
 </div>
-                    </div>
                     </div>
                 </div>
             </div>

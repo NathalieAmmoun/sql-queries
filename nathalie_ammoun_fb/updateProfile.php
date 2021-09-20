@@ -1,7 +1,6 @@
 <?php
- session_start();
- include("php/connection.php");
-
+session_start();
+include("php/connection.php");
 
 ?>
 <!DOCTYPE html>
@@ -14,9 +13,9 @@
     <meta name="description" content="au theme template">
     <meta name="author" content="Hau Nguyen">
     <meta name="keywords" content="au theme template">
-    
+
     <!-- Title Page-->
-    <title>Hompage</title>
+    <title>Update Profile</title>
 
     <!-- Fontfaces CSS-->
     <link href="css/font-face.css" rel="stylesheet" media="all">
@@ -43,8 +42,7 @@
 
 <body class="animsition">
     <div class="page-wrapper">
-        <!-- HEADER MOBILE-->
-        <header class="header-mobile d-block d-lg-none">
+    <header class="header-mobile d-block d-lg-none">
             <div class="header-mobile__bar">
                 <div class="container-fluid">
                     <div class="header-mobile-inner">
@@ -62,12 +60,12 @@
             <nav class="navbar-mobile">
                 <div class="container-fluid">
                     <ul class="navbar-mobile__list list-unstyled">
-                    <li class="has-sub">
-                            <a class="" href="./index.php">
+                    <li class="has-sub" >
+                            <a class="js-arrow " href="./index.php">
                                Home</a>
                         </li>
                         <li class="has-sub">
-                            <a class="" href="./friends.php">
+                            <a class="js-arrow" href="./friends.php">
                                Friends</a>
                         </li>
                     </ul>
@@ -106,13 +104,7 @@
             <header class="header-desktop">
                 <div class="section__content section__content--p30">
                     <div class="container-fluid" id="page">
-                        <div class="header-wrap">
-                            <form class="form-header">
-                                <input class="au-input au-input--xl" id="search" type="text" name="search" placeholder="Search" />
-                                <button class="au-btn--submit" id="searchBtn" type="button">
-                                    <i class="zmdi zmdi-search"></i>
-                                </button>
-                            </form>
+                        <div class="header-wrap float-right" >
                             <div class="header-button">
                                 <div class="noti-wrap">
                                     <div class="noti__item js-item-menu">
@@ -149,58 +141,54 @@
                     </div>
                 </div>
             </header>
-            <!-- HEADER DESKTOP-->
-
-            <!-- MAIN CONTENT-->
-            <div class="main-content">
-                <div class="section__content section__content--p30">
-                    <div class="container-fluid" id="container">
-                    <div class="alert alert-success text-center" id="success" role="alert">
-  Request Sent!
-</div>
-<div class="alert alert-danger text-center" id="blocked" role="alert">
-  User Blocked!
-</div>
-
-                        <div class="row">
-                            <div class="col-lg-9" id="search_table">
-                                <h2 class="title-1 m-b-25" id="table_title">Search Results</h2>
-                                <div class="table-responsive table--no-card m-b-30">
-                                    <table class="table table-borderless table-striped table-earning" id="s_table">
-                                        <thead>
-                                            <tr>
-                                                <th>Name</th>
-                                                <th>Gender</th>
-                                                <th>Birthday</th>
-                                                <th class="text-center">Add Friend</th>
-                                                <th class="text-center">Block</th>
-                                            </tr>
-                                        </thead>
-                                        <tbody id="search_body">
-                    
-                                        </tbody>
-                                    </table>
+        <div class="page-content--bge5">
+            <div class="container">
+            
+                <div class="login-wrap">
+                <div class="alert alert-primary text-center" id="updated" role="alert">Profile Updated Successfuly</div>
+                    <div class="login-content">
+                        <div class="login-logo">
+                            Update Profile
+                        </div>
+                        <div class="login-form">
+                            <form id="update-form">
+                                <div class="form-group">
+                                    <label>First Name</label>
+                                    <input class="au-input au-input--full" required minlength=3 id="firstName" type="text" name="firstName" placeholder="First Name">
+                                    <p id="fNameErr"></p>
                                 </div>
-                            </div>
-                            <div class="col-lg-3 ml-auto">
-                                <div class="title-1 m-b-25">
-                        <h2 class="text-center"><strong>Pending Requests</strong></h2></div>
-                                <div class="au-card au-card--bg-blue au-card-top-countries m-b-30">
-                                    <div class="au-card-inner">
-                                        <div class="table-responsive">
-                                            <table class="table table-top-countries">
-                                                <tbody id="sent-requests">
-                                                </tbody>
-                                            </table>
-                                        </div>
+                                <div class="form-group">
+                                    <label>Last Name</label>
+                                    <input class="au-input au-input--full"  required minlength=3 id="lastName" type="text" name="lastName" placeholder="Last Name">
+                                    <p id="lNameErr"></p>
+                                </div>
+                                <div class="row form-group">
+                                    <div class="col col-md-3">
+                                        <label for="text-input" class=" form-control-label" name="date_label">Birthday</label>
+                                                    
                                     </div>
-</div>
-                    </div>
+                                        <div class="col-12 col-md-9">
+                                        <input id ="dob" type="date" name="dob" placeholder="dd-mm-yyyy">
+                                        </div>
+                                </div>
+                                <div class="row form-group">
+                                                <div class="col col-md-3">
+                                                    <label for="select" class=" form-control-label">Gender</label>
+                                                </div>
+                                                <div class="col-12 col-md-9">
+                                                    <select name="gender" id="gender" class="form-control">
+                                                    <option value=1>Female</option>    
+                                                    <option value=2>Male</option> 
+                                                    <option value=3>Other</option>  
+                                                </select>
+                                                </div>
+                                            </div>
+                                <button class="au-btn au-btn--block au-btn--blue m-b-20" id="updateBtn" type="button">Update</button>
+                            </form>
+                        </div>
                     </div>
                 </div>
             </div>
-            <!-- END MAIN CONTENT-->
-            <!-- END PAGE CONTAINER-->
         </div>
 
     </div>

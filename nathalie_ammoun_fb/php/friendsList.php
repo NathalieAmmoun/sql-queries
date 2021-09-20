@@ -1,10 +1,11 @@
 <?php
+header("Access-Control-Allow-Origin: *");
 session_start();
 include "connection.php";
 if(isset($_SESSION['id']) && $_SESSION['id']!=""){
 $id = $_SESSION["id"];
 $status =1;
-$query = "SELECT DISTINCT u.id, u.first_name, u.last_name 
+$query = "SELECT DISTINCT u.id, u.first_name, u.last_name, u.dob, u.gender 
             FROM users u, friends f 
             WHERE (u.id = f.user_id1 OR u.id = f.user_id2) 
             AND (f.user_id1 =? OR f.user_id2=?) 
