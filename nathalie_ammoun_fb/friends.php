@@ -179,7 +179,7 @@ if(isset($_SESSION["id"]) && $_SESSION["id"]!=""){
                             </div>
                             <div class="col-lg-3 ml-auto">
                                 <div class="title-1 m-b-25">
-                                    <h2 class="text-center"><strong>Pending Requests</strong></h2>
+                                    <h2 class="text-center"><strong>Pending Invitations</strong></h2>
                                 </div>
                                 <div class="au-card au-card--bg-blue au-card-top-countries m-b-30">
                                     <div class="au-card-inner">

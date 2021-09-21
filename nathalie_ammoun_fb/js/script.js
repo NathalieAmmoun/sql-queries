@@ -165,9 +165,9 @@ function displayNotif() {
     });
     pendingAPI().then(pending => {
         let list = "";
-        pending.forEach(request => {
-            list += `<tr id="pen_${request.id}"><td>
-            <strong>${request.first_name} ${request.last_name}</strong> Request Pending</td></tr>`
+        pending.forEach(invitation => {
+            list += `<tr id="pen_${invitation.id}"><td>
+            <strong>${invitation.first_name} ${invitation.last_name}</strong> Invitation Pending</td></tr>`
         })
         $("#sent-requests").append(list);
     }).catch(error => {
