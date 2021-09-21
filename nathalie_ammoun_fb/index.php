@@ -1,7 +1,7 @@
 <?php
  session_start();
  include("php/connection.php");
-
+if(isset($_SESSION["id"]) && $_SESSION["id"]!=""){
 
 ?>
 <!DOCTYPE html>
@@ -14,7 +14,7 @@
     <meta name="description" content="au theme template">
     <meta name="author" content="Hau Nguyen">
     <meta name="keywords" content="au theme template">
-    
+
     <!-- Title Page-->
     <title>Hompage</title>
 
@@ -62,13 +62,13 @@
             <nav class="navbar-mobile">
                 <div class="container-fluid">
                     <ul class="navbar-mobile__list list-unstyled">
-                    <li class="has-sub">
+                        <li class="has-sub">
                             <a class="" href="./index.php">
-                               Home</a>
+                                Home</a>
                         </li>
                         <li class="has-sub">
                             <a class="" href="./friends.php">
-                               Friends</a>
+                                Friends</a>
                         </li>
                     </ul>
                 </div>
@@ -88,11 +88,11 @@
                     <ul class="list-unstyled navbar__list">
                         <li class="has-sub">
                             <a class="" href="./index.php">
-                               Home</a>
+                                Home</a>
                         </li>
                         <li class="has-sub">
                             <a class="" href="./friends.php">
-                               Friends</a>
+                                Friends</a>
                         </li>
                     </ul>
                 </nav>
@@ -117,8 +117,8 @@
                                 <div class="noti-wrap">
                                     <div class="noti__item js-item-menu">
                                         <i class="zmdi zmdi-notifications"></i>
-                                        <span class="quantity" id="notif" ></span>
-                                        <div class="notifi-dropdown js-dropdown" id="notif_drop" >
+                                        <span class="quantity" id="notif"></span>
+                                        <div class="notifi-dropdown js-dropdown" id="notif_drop">
                                         </div>
                                     </div>
                                 </div>
@@ -155,12 +155,12 @@
             <div class="main-content">
                 <div class="section__content section__content--p30">
                     <div class="container-fluid" id="container">
-                    <div class="alert alert-success text-center" id="success" role="alert">
-  Request Sent!
-</div>
-<div class="alert alert-danger text-center" id="blocked" role="alert">
-  User Blocked!
-</div>
+                        <div class="alert alert-success text-center" id="success" role="alert">
+                            Request Sent!
+                        </div>
+                        <div class="alert alert-danger text-center" id="blocked" role="alert">
+                            User Blocked!
+                        </div>
 
                         <div class="row">
                             <div class="col-lg-9" id="search_table">
@@ -177,14 +177,15 @@
                                             </tr>
                                         </thead>
                                         <tbody id="search_body">
-                    
+
                                         </tbody>
                                     </table>
                                 </div>
                             </div>
                             <div class="col-lg-3 ml-auto">
                                 <div class="title-1 m-b-25">
-                        <h2 class="text-center"><strong>Pending Requests</strong></h2></div>
+                                    <h2 class="text-center"><strong>Pending Requests</strong></h2>
+                                </div>
                                 <div class="au-card au-card--bg-blue au-card-top-countries m-b-30">
                                     <div class="au-card-inner">
                                         <div class="table-responsive">
@@ -194,15 +195,15 @@
                                             </table>
                                         </div>
                                     </div>
-</div>
-                    </div>
+                                </div>
+                            </div>
+                        </div>
                     </div>
                 </div>
+                <!-- END MAIN CONTENT-->
+                <!-- END PAGE CONTAINER-->
             </div>
-            <!-- END MAIN CONTENT-->
-            <!-- END PAGE CONTAINER-->
         </div>
-
     </div>
 
     <!-- Jquery JS-->
@@ -233,4 +234,7 @@
 </body>
 
 </html>
+<?php
+} else{header("location:./login.php");
+}?>
 <!-- end document-->

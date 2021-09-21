@@ -9,6 +9,7 @@ $(document).ready(function() {
     $('#removed').hide();
     $('#updated').hide();
 
+    //FEATURES
 
     getUser();
     displayNotif();

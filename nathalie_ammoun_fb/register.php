@@ -50,7 +50,7 @@ include("php/connection.php");
                             </a>
                         </div>
                         <div class="login-form">
-                            <form id="signup-form" action="php/signup.php" method ="post" >
+                            <form id="signup-form" action="php/signup.php" method="post">
                                 <div class="form-group">
                                     <label>First Name</label>
                                     <input class="au-input au-input--full" required minlength=3 id="firstName" type="text" name="firstName" placeholder="First Name">
@@ -58,35 +58,35 @@ include("php/connection.php");
                                 </div>
                                 <div class="form-group">
                                     <label>Last Name</label>
-                                    <input class="au-input au-input--full"  required minlength=3 id="lastName" type="text" name="lastName" placeholder="Last Name">
+                                    <input class="au-input au-input--full" required minlength=3 id="lastName" type="text" name="lastName" placeholder="Last Name">
                                     <p id="lNameErr"></p>
                                 </div>
                                 <div class="row form-group">
                                     <div class="col col-md-3">
                                         <label for="text-input" class=" form-control-label" name="date_label">Birthday</label>
-                                        <p id="dobErr" style="color:red"></p>           
+                                        <p id="dobErr" style="color:red"></p>
                                     </div>
-                                        <div class="col-12 col-md-9">
-                                        <input id ="dob" type="date" name="dob" placeholder="dd-mm-yyyy">
-                                        
-                                        </div>
-                                        
+                                    <div class="col-12 col-md-9">
+                                        <input id="dob" type="date" name="dob" placeholder="dd-mm-yyyy">
+
+                                    </div>
+
                                 </div>
                                 <div class="row form-group">
-                                                <div class="col col-md-3">
-                                                    <label for="select" class=" form-control-label">Gender</label>
-                                                </div>
-                                                <div class="col-12 col-md-9">
-                                                    <select name="gender" id="gender" class="form-control">
-                                                    <option value=1>Female</option>    
-                                                    <option value=2>Male</option> 
-                                                    <option value=3>Other</option>  
-                                                </select>
-                                                </div>
-                                            </div>
+                                    <div class="col col-md-3">
+                                        <label for="select" class=" form-control-label">Gender</label>
+                                    </div>
+                                    <div class="col-12 col-md-9">
+                                        <select name="gender" id="gender" class="form-control">
+                                            <option value=1>Female</option>
+                                            <option value=2>Male</option>
+                                            <option value=3>Other</option>
+                                        </select>
+                                    </div>
+                                </div>
                                 <div class="form-group">
                                     <label>Email Address</label>
-                                    <input class="au-input au-input--full"  required id="email" type="email" name="email" placeholder="Email">
+                                    <input class="au-input au-input--full" required id="email" type="email" name="email" placeholder="Email">
                                     <p id="emErr" style="color:red"></p>
                                 </div>
                                 <div class="form-group">
@@ -99,7 +99,7 @@ include("php/connection.php");
                                     <input class="au-input au-input--full" required id="confirmPassword" type="password" name="confirmPassword" placeholder="Confirm Password">
                                     <p id="cpassErr" style="color:red"></p>
                                 </div>
-                                
+
                                 <button class="au-btn au-btn--block au-btn--green m-b-20" id="submitButton" type="submit">register</button>
                             </form>
                             <div class="register-link">

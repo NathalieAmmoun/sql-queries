@@ -1,7 +1,7 @@
 <?php
 session_start();
 include("php/connection.php");
-
+if(isset($_SESSION["id"]) && $_SESSION["id"]!=""){
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -42,7 +42,7 @@ include("php/connection.php");
 
 <body class="animsition">
     <div class="page-wrapper">
-    <header class="header-mobile d-block d-lg-none">
+        <header class="header-mobile d-block d-lg-none">
             <div class="header-mobile__bar">
                 <div class="container-fluid">
                     <div class="header-mobile-inner">
@@ -60,13 +60,13 @@ include("php/connection.php");
             <nav class="navbar-mobile">
                 <div class="container-fluid">
                     <ul class="navbar-mobile__list list-unstyled">
-                    <li class="has-sub" >
+                        <li class="has-sub">
                             <a class="js-arrow " href="./index.php">
-                               Home</a>
+                                Home</a>
                         </li>
                         <li class="has-sub">
                             <a class="js-arrow" href="./friends.php">
-                               Friends</a>
+                                Friends</a>
                         </li>
                     </ul>
                 </div>
@@ -86,11 +86,11 @@ include("php/connection.php");
                     <ul class="list-unstyled navbar__list">
                         <li class="has-sub">
                             <a class="" href="./index.php">
-                               Home</a>
+                                Home</a>
                         </li>
                         <li class="has-sub">
                             <a class="" href="./friends.php">
-                               Friends</a>
+                                Friends</a>
                         </li>
                     </ul>
                 </nav>
@@ -104,13 +104,13 @@ include("php/connection.php");
             <header class="header-desktop">
                 <div class="section__content section__content--p30">
                     <div class="container-fluid" id="page">
-                        <div class="header-wrap float-right" >
+                        <div class="header-wrap float-right">
                             <div class="header-button">
                                 <div class="noti-wrap">
                                     <div class="noti__item js-item-menu">
                                         <i class="zmdi zmdi-notifications"></i>
-                                        <span class="quantity" id="notif" ></span>
-                                        <div class="notifi-dropdown js-dropdown" id="notif_drop" >
+                                        <span class="quantity" id="notif"></span>
+                                        <div class="notifi-dropdown js-dropdown" id="notif_drop">
                                         </div>
                                     </div>
                                 </div>
@@ -141,56 +141,56 @@ include("php/connection.php");
                     </div>
                 </div>
             </header>
-        <div class="page-content--bge5">
-            <div class="container">
-            
-                <div class="login-wrap">
-                <div class="alert alert-primary text-center" id="updated" role="alert">Profile Updated Successfuly</div>
-                    <div class="login-content">
-                        <div class="login-logo">
-                            Update Profile
-                        </div>
-                        <div class="login-form">
-                            <form id="update-form">
-                                <div class="form-group">
-                                    <label>First Name</label>
-                                    <input class="au-input au-input--full" required minlength=3 id="firstName" type="text" name="firstName" placeholder="First Name">
-                                    <p id="fNameErr"></p>
-                                </div>
-                                <div class="form-group">
-                                    <label>Last Name</label>
-                                    <input class="au-input au-input--full"  required minlength=3 id="lastName" type="text" name="lastName" placeholder="Last Name">
-                                    <p id="lNameErr"></p>
-                                </div>
-                                <div class="row form-group">
-                                    <div class="col col-md-3">
-                                        <label for="text-input" class=" form-control-label" name="date_label">Birthday</label>
-                                        <p id="dobErr" style="color:red"></p>     
+            <div class="page-content--bge5">
+                <div class="container">
+
+                    <div class="login-wrap">
+                        <div class="alert alert-primary text-center" id="updated" role="alert">Profile Updated Successfuly</div>
+                        <div class="login-content">
+                            <div class="login-logo">
+                                Update Profile
+                            </div>
+                            <div class="login-form">
+                                <form id="update-form">
+                                    <div class="form-group">
+                                        <label>First Name</label>
+                                        <input class="au-input au-input--full" required minlength=3 id="firstName" type="text" name="firstName" placeholder="First Name">
+                                        <p id="fNameErr"></p>
                                     </div>
-                                        <div class="col-12 col-md-9">
-                                        <input id ="dob" type="date" name="dob" placeholder="dd-mm-yyyy">
+                                    <div class="form-group">
+                                        <label>Last Name</label>
+                                        <input class="au-input au-input--full" required minlength=3 id="lastName" type="text" name="lastName" placeholder="Last Name">
+                                        <p id="lNameErr"></p>
+                                    </div>
+                                    <div class="row form-group">
+                                        <div class="col col-md-3">
+                                            <label for="text-input" class=" form-control-label" name="date_label">Birthday</label>
+                                            <p id="dobErr" style="color:red"></p>
                                         </div>
-                                </div>
-                                <div class="row form-group">
-                                                <div class="col col-md-3">
-                                                    <label for="select" class=" form-control-label">Gender</label>
-                                                </div>
-                                                <div class="col-12 col-md-9">
-                                                    <select name="gender" id="gender" class="form-control">
-                                                    <option value=1>Female</option>    
-                                                    <option value=2>Male</option> 
-                                                    <option value=3>Other</option>  
-                                                </select>
-                                                </div>
-                                            </div>
-                                <button class="au-btn au-btn--block au-btn--blue m-b-20" id="updateBtn" type="button">Update</button>
-                            </form>
+                                        <div class="col-12 col-md-9">
+                                            <input id="dob" type="date" name="dob" placeholder="dd-mm-yyyy">
+                                        </div>
+                                    </div>
+                                    <div class="row form-group">
+                                        <div class="col col-md-3">
+                                            <label for="select" class=" form-control-label">Gender</label>
+                                        </div>
+                                        <div class="col-12 col-md-9">
+                                            <select name="gender" id="gender" class="form-control">
+                                                <option value=1>Female</option>
+                                                <option value=2>Male</option>
+                                                <option value=3>Other</option>
+                                            </select>
+                                        </div>
+                                    </div>
+                                    <button class="au-btn au-btn--block au-btn--blue m-b-20" id="updateBtn" type="button">Update</button>
+                                </form>
+                            </div>
                         </div>
                     </div>
                 </div>
             </div>
         </div>
-
     </div>
 
     <!-- Jquery JS-->
@@ -217,10 +217,13 @@ include("php/connection.php");
     <!-- Main JS-->
     <script src="js/main.js"></script>
     <script src="js/script.js"></script>
-    
+
 
 
 </body>
 
 </html>
+<?php }else{
+    header("location:./login.php");
+} ?>
 <!-- end document-->
