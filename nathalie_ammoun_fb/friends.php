@@ -151,10 +151,10 @@ include("php/connection.php");
             <div class="main-content">
                 <div class="section__content section__content--p30">
                     <div class="container-fluid" id="container">
-                    <div class="alert alert-danger" id="blocked" role="alert">
+                    <div class="alert alert-danger text-center" id="blocked" role="alert">
   User Blocked!
 </div>
-<div class="alert alert-warning" id="removed" role="alert">
+<div class="alert alert-warning text-center" id="removed" role="alert">
   Friend Removed!
 </div>
                         <div class="row">

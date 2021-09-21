@@ -1,5 +1,4 @@
 <?php
-header("Access-Control-Allow-Origin: *");
 session_start();
 include "connection.php";
 
@@ -10,12 +9,12 @@ if(isset($_SESSION['id']) && $_SESSION['id']!="" ){
 $id = $_SESSION["id"];
 if ($keyword!=""){
 $query = "SELECT DISTINCT u.id, u.first_name, u.last_name, u.dob, u.gender 
-            FROM users u 
-            WHERE NOT EXISTS( SELECT * FROM friends f WHERE (f.user_id1 = u.id or f.user_id2 =u.id) AND (f.user_id1 =? or f.user_id2=?)) 
-            AND NOT EXISTS( SELECT * FROM user1_blocked_user2 b WHERE b.user_id1 = u.id or b.user_id2 =u.id) 
-            AND (u.first_name LIKE ? OR u.last_name LIKE ?) AND u.id != ?";
+FROM users u 
+WHERE NOT EXISTS( SELECT * FROM friends f WHERE (f.user_id1 = u.id or f.user_id2 =u.id) AND (f.user_id1 =? or f.user_id2=?)) 
+AND NOT EXISTS( SELECT * FROM user1_blocked_user2 b WHERE (b.user_id1 = u.id or b.user_id2 =u.id) AND (b.user_id1 =? OR b.user_id2=?)) 
+AND (u.first_name LIKE ? OR u.last_name LIKE ?) AND u.id !=?;";
 $stmt = $connection->prepare($query);
-$stmt->bind_param("sssss", $id, $id, $substr, $substr, $id);
+$stmt->bind_param("sssssss", $id, $id, $id, $id, $substr, $substr, $id);
 $stmt->execute();
 $result = $stmt->get_result();
 $users=[];

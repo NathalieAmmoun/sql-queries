@@ -165,7 +165,7 @@ include("php/connection.php");
                                 <div class="row form-group">
                                     <div class="col col-md-3">
                                         <label for="text-input" class=" form-control-label" name="date_label">Birthday</label>
-                                                    
+                                        <p id="dobErr" style="color:red"></p>     
                                     </div>
                                         <div class="col-12 col-md-9">
                                         <input id ="dob" type="date" name="dob" placeholder="dd-mm-yyyy">
@@ -217,6 +217,8 @@ include("php/connection.php");
     <!-- Main JS-->
     <script src="js/main.js"></script>
     <script src="js/script.js"></script>
+    
+
 
 </body>
 

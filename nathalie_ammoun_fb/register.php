@@ -54,7 +54,7 @@ include("php/connection.php");
                                 <div class="form-group">
                                     <label>First Name</label>
                                     <input class="au-input au-input--full" required minlength=3 id="firstName" type="text" name="firstName" placeholder="First Name">
-                                    <p id="fNameErr"></p>
+                                    <p id="fNameErr" style="color:red"></p>
                                 </div>
                                 <div class="form-group">
                                     <label>Last Name</label>
@@ -64,11 +64,13 @@ include("php/connection.php");
                                 <div class="row form-group">
                                     <div class="col col-md-3">
                                         <label for="text-input" class=" form-control-label" name="date_label">Birthday</label>
-                                                    
+                                        <p id="dobErr" style="color:red"></p>           
                                     </div>
                                         <div class="col-12 col-md-9">
                                         <input id ="dob" type="date" name="dob" placeholder="dd-mm-yyyy">
+                                        
                                         </div>
+                                        
                                 </div>
                                 <div class="row form-group">
                                                 <div class="col col-md-3">
@@ -85,17 +87,17 @@ include("php/connection.php");
                                 <div class="form-group">
                                     <label>Email Address</label>
                                     <input class="au-input au-input--full"  required id="email" type="email" name="email" placeholder="Email">
-                                    <p id="emErr"></p>
+                                    <p id="emErr" style="color:red"></p>
                                 </div>
                                 <div class="form-group">
                                     <label>Password</label>
                                     <input class="au-input au-input--full" required minlength=3 id="password" type="password" name="password" placeholder="Password">
-                                    <p id="passErr"></p>
+                                    <p id="passErr" style="color:red"></p>
                                 </div>
                                 <div class="form-group">
                                     <label>Confirm Password</label>
                                     <input class="au-input au-input--full" required id="confirmPassword" type="password" name="confirmPassword" placeholder="Confirm Password">
-                                    <p id="cpassErr"></p>
+                                    <p id="cpassErr" style="color:red"></p>
                                 </div>
                                 
                                 <button class="au-btn au-btn--block au-btn--green m-b-20" id="submitButton" type="submit">register</button>
@@ -116,7 +118,7 @@ include("php/connection.php");
 
     <!-- Jquery JS-->
     <script src="vendor/jquery-3.2.1.min.js"></script>
-    <script src="js/validate.js"></script>
+    <script src="js/validateReg.js"></script>
     <!-- Bootstrap JS-->
     <script src="vendor/bootstrap-4.1/popper.min.js"></script>
     <script src="vendor/bootstrap-4.1/bootstrap.min.js"></script>

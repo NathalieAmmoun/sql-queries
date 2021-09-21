@@ -1,5 +1,4 @@
 <?php
-header("Access-Control-Allow-Origin: *");
 session_start();
 include "connection.php";
 $user_id1=$_GET["id"];
